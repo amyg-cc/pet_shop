@@ -55,3 +55,10 @@ def customer_can_afford_pet(customer, new_pet):
         can_buy_pet = True
     return can_buy_pet
 
+def sell_pet_to_customer(shop_details, pet, customer):
+    if pet in shop_details["pets"]:
+        if customer_can_afford_pet(customer, pet) == True:
+            add_pet_to_customer(customer, pet)
+            remove_customer_cash(customer, pet["price"])
+            add_or_remove_cash(shop_details, pet["price"])
+            increase_pets_sold(shop_details, 1)
